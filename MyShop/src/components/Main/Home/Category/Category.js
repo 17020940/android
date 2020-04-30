@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Text, View,Image,StyleSheet,Dimensions} from 'react-native';
 import Swiper from "react-native-web-swiper";
-import  image from '../../../../../media/temp/banner.jpg';
+import  image from '../../../../media/temp/banner.jpg';
 const {height} = Dimensions.get('window')
 export default class Category extends Component{
   render(){

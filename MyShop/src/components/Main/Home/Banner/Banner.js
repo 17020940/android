@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {StyleSheet, Dimensions,View, Text, ScrollView,Image,TouchableOpacity} from 'react-native';
-import  image from '../../../../../media/temp/fit.jpg';
+import  image from '../../../../media/temp/fit.jpg';
 const {height,width} = Dimensions.get('window');
 
 export default class Banner extends Component {

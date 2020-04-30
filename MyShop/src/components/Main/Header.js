@@ -4,8 +4,8 @@ import {
   StyleSheet
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import icSearch from '../../../media/appIcon/cart1.png';
-import icChat from '../../../media/appIcon/chat.png';
+import icSearch from '../../media/appIcon/cart1.png';
+import icChat from '../../media/appIcon/chat.png';
 const {height} = Dimensions.get('window');
 export default function(props) {
   const navigation = useNavigation();
@@ -24,7 +24,7 @@ class Header extends Component{
           </TouchableOpacity>
         </View>
         <View style ={iconStyle}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
             <Image source={icSearch} style={cartStyle}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Message')}>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     borderBottomColor: '#F8F8FF',
-    borderBottomWidth: 3,
+    borderBottomWidth: 2,
   },
   logo:{
     flex:4,

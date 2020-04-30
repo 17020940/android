@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Text, View,Image,StyleSheet,Dimensions,TouchableOpacity,ScrollView} from 'react-native';
-import  image from '../../../../../media/appIcon/banner.jpg';
+import  image from '../../../../media/appIcon/banner.jpg';
 const {height,width} = Dimensions.get('window')
 export default class TopProducts extends Component{
   render(){

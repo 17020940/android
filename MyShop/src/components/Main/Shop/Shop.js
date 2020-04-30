@@ -1,101 +1,69 @@
 import React, {Component} from 'react';
-import { Text, View,Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import icHome from '../../../media/appIcon/home.png';
-import icHome0 from '../../../media/appIcon/home0.png';
-import icCart from '../../../media/appIcon/shop.png';
-import icCart0 from '../../../media/appIcon/shop0.png';
-import icMail from '../../../media/appIcon/mail.png';
-import icMail0 from '../../../media/appIcon/mail0.png';
-import icAccount from '../../../media/appIcon/user.png';
-import icAccount0 from '../../../media/appIcon/user0.png';
-import Authentication from '../../Authentication/Authentication';
+import {
+  View,Text,Image,TouchableOpacity,Dimensions,FlatList,
+  StyleSheet,ScrollView
+} from 'react-native';
+import icAvatar from '../../../media/appIcon/banner.jpg';
+import icLogo from '../../../media/appIcon/logo.jpg';
+const {height,width} = Dimensions.get('window');
+import { useNavigation } from '@react-navigation/native';
+export default function(props) {
+  const navigation = useNavigation();
 
-import Home from './Home/Home'
-
-function Profile() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile!</Text>
-    </View>
-  );
+  return <ProductView {...props} navigation={navigation} />;
 }
-
-function Notifications() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Notifications!</Text>
-    </View>
-  );
-}
-
-const Tab = createBottomTabNavigator();
-
-function MyTabs() {
-  return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      tabBarOptions={{
-        activeTintColor: '#607D8B',
-        labelStyle: {
-            fontSize: 15,
-          },
-        style:{
-          height:65
-        }
-      }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon : ({focused}) => {
-                return  <Image source={focused ? icHome:icHome0} style={{height:40, width:40}}/>
-
-            }
-        }}
-      />
-      <Tab.Screen
-        name="Shop"
-        component={Notifications}
-        options={{
-          tabBarLabel: 'Shop',
-          tabBarIcon : ({focused, tintColor}) => {
-                return  <Image source={focused ? icCart:icCart0} style={{height:30, width:30}} color={tintColor}/>
-            }
-        }}
-      />
-      <Tab.Screen
-        name="Notification"
-        component={Profile}
-        options={{
-          tabBarLabel: 'Notification',
-          tabBarIcon : ({focused, tintColor}) => {
-                return  <Image source={focused ? icMail:icMail0} style={{height:25, width:25}} color={tintColor}/>
-            }
-        }}
-      />
-      <Tab.Screen
-        name="Account"
-        component={Authentication}
-        options={{
-          tabBarLabel: 'Account',
-          tabBarIcon : ({focused, tintColor}) => {
-                return  <Image source={focused ? icAccount:icAccount0} style={{height:25, width:25}} color={tintColor}/>
-            }
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
-
-export default class Shop extends Component {
+class ProductView extends Component{
   render(){
-    return (
-        <MyTabs />
-    );
+    const { navigation } = this.props;
+    const {headerStyle,addStyle,iconStyle,avatarStyle,topStyle
+    }= styles;
+    return(
+      <View style={{flex:1}}>
+        <View style ={headerStyle}>
+          <View style = {topStyle}>
+            <Image source={icAvatar} style={avatarStyle} />
+            <Text style ={{fontSize:30,fontWeight:'bold',color:'#FFF'}}> DONG LAO SHOP </Text>
+            <Image source={icLogo} style={iconStyle}/>
+          </View>
+          <View style = {{flex:1,alignItems:'center',justifyContent:'center'}}>
+            <TouchableOpacity style ={addStyle} onPress={() => navigation.navigate('AddProduct')}>
+              <Text style ={{fontSize:25}}>thêm sản phẩm </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style ={{flex:4,backgroundColor:'#FFF'}}>
+          <ScrollView>
+          </ScrollView>
+        </View>
+      </View>
+    )
   }
 }
+const styles = StyleSheet.create({
+  headerStyle:{
+    flex:1,
+    backgroundColor:'#607D8B',
+  },
+  iconStyle:{
+    height:40,
+    width:40,
+  },
+  avatarStyle:{
+    height:60,
+    width:60,
+    borderRadius:30
+  },
+  addStyle:{
+    backgroundColor:'#FFF',
+    height:height*0.06,
+    width:width*0.8,
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:width*0.4
+  },
+  topStyle:{
+    flex:1,flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-around'
+  }
+})

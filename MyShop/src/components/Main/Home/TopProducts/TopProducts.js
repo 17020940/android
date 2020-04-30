@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Text, View,Image,StyleSheet,Dimensions,TouchableOpacity,ScrollView,
   FlatList
 } from 'react-native';
-import  image from '../../../../../media/appIcon/banner.jpg';
+import  image from '../../../../media/appIcon/banner.jpg';
 import { useNavigation } from '@react-navigation/native';
 const {height,width} = Dimensions.get('window')
 export default function(props) {
